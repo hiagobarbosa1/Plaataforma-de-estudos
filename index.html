@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plataforma de Estudos</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero__copy">
+          <p class="eyebrow">Planejamento completo</p>
+          <h1>Sua plataforma de estudos, organizada por semana e por conteúdo.</h1>
+          <p class="hero__text">
+            Marque tópicos como concluídos, acompanhe seu avanço em tempo real e
+            estude com uma trilha visual inspirada na paleta Brume, Menthe,
+            Limonade e Verveine.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#cronograma">Ver cronograma</a>
+            <a class="button button--ghost" href="#conteudos">Abrir checklist</a>
+          </div>
+        </div>
+
+        <aside class="quick-nav-card" aria-label="Atalhos para as disciplinas">
+          <div class="quick-nav-card__header">
+            <p class="eyebrow">Acesso rápido</p>
+            <h2>Vá direto para a matéria</h2>
+          </div>
+          <nav class="quick-nav">
+            <a href="#matematica">Matemática</a>
+            <a href="#geometria">Geometria</a>
+            <a href="#trigonometria">Trigonometria</a>
+            <a href="#quimica">Química</a>
+            <a href="#fisica">Física</a>
+            <a href="#biologia">Biologia</a>
+            <a href="#geografia">Geografia</a>
+            <a href="#historia">História</a>
+            <a href="#literatura">Literatura</a>
+            <a href="#portugues">Português</a>
+            <a href="#filosofia">Filosofia</a>
+            <a href="#sociologia">Sociologia</a>
+          </nav>
+        </aside>
+      </header>
+
+      <main>
+        <section class="stats" aria-label="Resumo do progresso">
+          <article class="stat-card">
+            <span class="stat-card__label">Conteúdos totais</span>
+            <strong class="stat-card__value" data-stat="total-topics">0</strong>
+          </article>
+          <article class="stat-card">
+            <span class="stat-card__label">Concluídos</span>
+            <strong class="stat-card__value" data-stat="completed-topics">0</strong>
+          </article>
+          <article class="stat-card">
+            <span class="stat-card__label">Progresso geral</span>
+            <strong class="stat-card__value" data-stat="progress-rate">0%</strong>
+          </article>
+          <article class="stat-card">
+            <span class="stat-card__label">Disciplinas finalizadas</span>
+            <strong class="stat-card__value" data-stat="completed-subjects">0</strong>
+          </article>
+        </section>
+
+        <section class="dashboard-grid">
+          <article class="panel focus-panel">
+            <div class="panel__header">
+              <div>
+                <p class="panel__eyebrow">Foco imediato</p>
+                <h2>Próximos conteúdos para atacar</h2>
+              </div>
+            </div>
+            <ul class="focus-list" data-focus-list></ul>
+          </article>
+
+          <article class="panel actions-panel">
+            <div class="panel__header">
+              <div>
+                <p class="panel__eyebrow">Controle rápido</p>
+                <h2>Gerencie seu ritmo</h2>
+              </div>
+            </div>
+            <div class="actions-panel__body">
+              <p>
+                Seu progresso fica salvo no navegador. Você pode sair e voltar
+                depois sem perder as marcações.
+              </p>
+              <button class="button button--danger" type="button" data-reset-all>
+                Limpar progresso
+              </button>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel" id="cronograma">
+          <div class="panel__header">
+            <div>
+              <p class="panel__eyebrow">Cronograma semanal</p>
+              <h2>16 semanas com distribuição equilibrada</h2>
+            </div>
+            <p class="panel__description">
+              O cronograma foi organizado para alternar exatas, natureza,
+              linguagens e humanas ao longo das semanas.
+            </p>
+          </div>
+          <div class="schedule-grid" data-schedule-grid></div>
+          <div class="week-detail" data-week-detail>
+            <div class="week-detail__placeholder">
+              Clique em uma matéria dentro de qualquer semana para ver os conteúdos planejados e marcar o progresso por aqui.
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="conteudos">
+          <div class="panel__header panel__header--stack">
+            <div>
+              <p class="panel__eyebrow">Checklist completo</p>
+              <h2>Todos os conteúdos organizados por disciplina</h2>
+            </div>
+            <div class="toolbar">
+              <label class="search-field">
+                <span class="sr-only">Buscar conteúdo</span>
+                <input
+                  type="search"
+                  placeholder="Buscar conteúdo, tema ou disciplina"
+                  data-search-input
+                />
+              </label>
+            </div>
+          </div>
+          <div class="subjects-grid" data-subjects-grid></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="schedule-card-template">
+      <article class="week-card">
+        <div class="week-card__top">
+          <div>
+            <p class="week-card__eyebrow"></p>
+            <h3></h3>
+          </div>
+          <span class="week-card__progress"></span>
+        </div>
+        <p class="week-card__theme"></p>
+        <ul class="week-card__subjects"></ul>
+      </article>
+    </template>
+
+    <template id="subject-card-template">
+      <article class="subject-card">
+        <div class="subject-card__header">
+          <div>
+            <p class="subject-card__eyebrow"></p>
+            <h3></h3>
+          </div>
+          <span class="subject-card__count"></span>
+        </div>
+        <div class="subject-card__progressbar" aria-hidden="true">
+          <span></span>
+        </div>
+        <p class="subject-card__summary"></p>
+        <div class="subject-card__actions">
+          <button type="button" class="mini-button" data-action="complete">
+            Concluir tudo
+          </button>
+          <button type="button" class="mini-button mini-button--ghost" data-action="clear">
+            Limpar
+          </button>
+        </div>
+        <ul class="topic-list"></ul>
+      </article>
+    </template>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
